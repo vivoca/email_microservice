@@ -17,7 +17,7 @@ public class EmailSender {
     public static String SMTP_PORT = "587";
 
 
-    public static void send(String userEmail, String subject, String messagetext) {
+    public static void send(String clientEmail, String userEmail, String subject, String messagetext) {
 
         try {
             System.out.println("TLSEmail Start");
@@ -39,6 +39,7 @@ public class EmailSender {
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(SENDER_EMAIL));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(userEmail));
+            message.setReplyTo(new Address[]{new InternetAddress(clientEmail)});
 
             System.out.println("Mail Check 2");
 
