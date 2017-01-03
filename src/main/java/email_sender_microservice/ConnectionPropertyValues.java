@@ -21,6 +21,14 @@ public class ConnectionPropertyValues {
             if (inputStream != null) {
                 prop.load(inputStream);
             }
+
+            // Database properties
+            connectionProperties.put("url", prop.getProperty("url"));
+            connectionProperties.put("database", prop.getProperty("database"));
+            connectionProperties.put("user", prop.getProperty("user"));
+            connectionProperties.put("password", prop.getProperty("password"));
+
+            // Email properties
             connectionProperties.put("sender_email", prop.getProperty("sender_email"));
             connectionProperties.put("host", prop.getProperty("host"));
             connectionProperties.put("sender_password", prop.getProperty("sender_password"));
