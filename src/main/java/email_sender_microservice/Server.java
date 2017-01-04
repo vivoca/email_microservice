@@ -1,28 +1,48 @@
 package email_sender_microservice;
 
 
+import com.j256.ormlite.dao.Dao;
+import com.j256.ormlite.dao.DaoManager;
+import com.j256.ormlite.jdbc.JdbcConnectionSource;
 import com.j256.ormlite.logger.Logger;
 import com.j256.ormlite.logger.LoggerFactory;
+import com.j256.ormlite.support.ConnectionSource;
+import com.j256.ormlite.table.TableUtils;
 import email_sender_microservice.controller.EmailController;
+import email_sender_microservice.model.Email;
 
 import java.net.URISyntaxException;
+import java.sql.SQLException;
+import java.util.HashMap;
 
 import static spark.Spark.*;
 
 public class Server {
     private static final Logger logger = LoggerFactory.getLogger(Server.class);
+    private static ConnectionPropertyValues configReader = new ConnectionPropertyValues();
+    protected static HashMap DBprops = configReader.getPropValuesOfEmail();
 
-    public static void main(String[] args) {
+    private static final String DATABASE = "jdbc:postgresql://" + DBprops.get("url") + "/" + DBprops.get("database");
+    private static final String DB_USER = String.valueOf(DBprops.get("user"));
+    private static final String DB_PASSWORD = String.valueOf(DBprops.get("password"));
+
+
+
+    public static void main(String[] args) throws SQLException {
         logger.debug("Starting " + Server.class.getName() + "...");
+        ConnectionSource connectionSource = new JdbcConnectionSource(DATABASE, DB_USER, DB_PASSWORD);
 
         setup(args);
 
-        EmailController controller = new EmailController();
+        TableUtils.createTableIfNotExists(connectionSource, Email.class);
 
+        Dao<Email, String> emailDao = DaoManager.createDao(connectionSource, Email.class);
+
+        EmailController controller = new EmailController();
 
         // --- MAPPINGS ---
         get("/api/status", controller::status);
-        post("/api/create", controller::createEmail);
+        post("/api/create", (request, response) -> controller.createEmail(request, response, emailDao));
 
         // --- EXCEPTION HANDLING ---
         exception(URISyntaxException.class, (exception, request, response) -> {
