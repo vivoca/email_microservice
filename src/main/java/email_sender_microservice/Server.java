@@ -7,17 +7,13 @@ import email_sender_microservice.controller.EmailController;
 
 import java.net.URISyntaxException;
 
-import static spark.Spark.exception;
-import static spark.Spark.get;
-import static spark.Spark.port;
+import static spark.Spark.*;
 
-public class EmailAPIService {
-    private static final Logger logger = LoggerFactory.getLogger(EmailAPIService.class);
-
-    private EmailController controller;
+public class Server {
+    private static final Logger logger = LoggerFactory.getLogger(Server.class);
 
     public static void main(String[] args) {
-        logger.debug("Starting " + EmailAPIService.class.getName() + "...");
+        logger.debug("Starting " + Server.class.getName() + "...");
 
         setup(args);
 
@@ -26,6 +22,7 @@ public class EmailAPIService {
 
         // --- MAPPINGS ---
         get("/api/status", controller::status);
+        post("/api/create", controller::createEmail);
 
         // --- EXCEPTION HANDLING ---
         exception(URISyntaxException.class, (exception, request, response) -> {
