@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import java.awt.*;
 import java.util.UUID;
 
-@DatabaseTable(tableName = "accounts")
+@DatabaseTable(tableName = "client")
 public class Client {
     private static final Logger logger = LoggerFactory.getLogger(Client.class);
 
