@@ -6,8 +6,8 @@ import com.j256.ormlite.table.DatabaseTable;
     @DatabaseTable(tableName = "email")
     public class Email {
 
-        @DatabaseField(id = true)
-        private String id;
+        @DatabaseField(generatedId = true)
+        private Integer id;
 
         @DatabaseField
         private String status;
@@ -28,20 +28,19 @@ import com.j256.ormlite.table.DatabaseTable;
             // ORMLite needs a no-arg constructor
         }
 
-        public Email(String id, String status, String to, String from, String subject, String message) {
-            this.id = id;
-            this.status = status;
+        public Email(String to, String from, String subject, String message) {
+            this.status = "new";
             this.to = to;
             this.from = from;
             this.subject = subject;
             this.message = message;
         }
 
-        public String getId() {
+        public Integer getId() {
             return id;
         }
 
-        public void setId(String id) {
+        public void setId(Integer id) {
             this.id = id;
         }
 
