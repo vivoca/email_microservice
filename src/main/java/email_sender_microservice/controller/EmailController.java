@@ -2,6 +2,7 @@ package email_sender_microservice.controller;
 
 
 import com.j256.ormlite.dao.Dao;
+import email_sender_microservice.model.Client;
 import email_sender_microservice.model.Email;
 import org.json.JSONObject;
 import spark.Request;
@@ -36,10 +37,11 @@ public class EmailController {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-
-
         }
+        return true;
+    }
 
+    public boolean register(Request request, Response response, Dao<Client, String> clientDao) {
         return true;
     }
 
@@ -53,4 +55,6 @@ public class EmailController {
         }
         return result;
     }
+
+
 }

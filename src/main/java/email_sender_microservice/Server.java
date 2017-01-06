@@ -9,6 +9,7 @@ import com.j256.ormlite.logger.LoggerFactory;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 import email_sender_microservice.controller.EmailController;
+import email_sender_microservice.model.Client;
 import email_sender_microservice.model.Email;
 
 import java.net.URISyntaxException;
@@ -35,14 +36,17 @@ public class Server {
         setup(args);
 
         TableUtils.createTableIfNotExists(connectionSource, Email.class);
+        TableUtils.createTableIfNotExists(connectionSource, Client.class);
 
         Dao<Email, String> emailDao = DaoManager.createDao(connectionSource, Email.class);
+        Dao<Client, String> clientDao = DaoManager.createDao(connectionSource, Client.class);
 
         EmailController controller = new EmailController();
 
         // --- MAPPINGS ---
         get("/api/status", controller::status);
         post("/api/create", (request, response) -> controller.createEmail(request, response, emailDao));
+        post("/api/register", ((request, response) -> controller.register(request, response, clientDao)));
 
         // --- EXCEPTION HANDLING ---
         exception(URISyntaxException.class, (exception, request, response) -> {
