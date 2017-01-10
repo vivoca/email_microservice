@@ -6,7 +6,7 @@ import com.j256.ormlite.table.DatabaseTable;
     @DatabaseTable(tableName = "email")
     public class Email {
 
-        @DatabaseField(generatedId = true, columnDefinition = "VARCHAR(100) DEFAULT 'EMAIL' NOT NULL")
+        @DatabaseField(generatedId = true)
         private Integer id;
 
         @DatabaseField
