@@ -9,7 +9,7 @@ import com.j256.ormlite.logger.LoggerFactory;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 import email_sender_microservice.controller.ConnectionHandling;
-import email_sender_microservice.controller.EmailController;
+import email_sender_microservice.controller.email.EmailController;
 import email_sender_microservice.model.Client;
 import email_sender_microservice.model.Email;
 

@@ -1,8 +1,7 @@
-package email_sender_microservice.controller;
+package email_sender_microservice.controller.email;
 
 
 import com.j256.ormlite.dao.Dao;
-import email_sender_microservice.EmailSender;
 import email_sender_microservice.model.Client;
 import email_sender_microservice.model.Email;
 import org.json.JSONObject;

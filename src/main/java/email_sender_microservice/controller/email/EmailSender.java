@@ -1,4 +1,4 @@
-package email_sender_microservice;
+package email_sender_microservice.controller.email;
 
 import email_sender_microservice.controller.ConnectionHandling;
 

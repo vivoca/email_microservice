@@ -1,6 +1,6 @@
 package email_sender_microservice.server;
 
-import email_sender_microservice.controller.EmailController;
+import email_sender_microservice.controller.email.EmailController;
 
 public class EmailSenderServer {
 
