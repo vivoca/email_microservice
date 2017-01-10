@@ -1,4 +1,4 @@
-package email_sender_microservice;
+package server;
 
 
 import com.j256.ormlite.dao.Dao;
@@ -8,6 +8,7 @@ import com.j256.ormlite.logger.Logger;
 import com.j256.ormlite.logger.LoggerFactory;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
+import email_sender_microservice.ConnectionHandling;
 import email_sender_microservice.controller.EmailController;
 import email_sender_microservice.model.Client;
 import email_sender_microservice.model.Email;
@@ -20,12 +21,13 @@ import static spark.Spark.*;
 
 public class Server {
     private static final Logger logger = LoggerFactory.getLogger(Server.class);
-    private static ConnectionPropertyValues configReader = new ConnectionPropertyValues();
-    protected static HashMap DBprops = configReader.getPropValuesOfEmail();
+    private static ConnectionHandling configReader = new ConnectionHandling();
+    protected static HashMap DBprops = configReader.getPropValues();
 
     private static final String DATABASE = "jdbc:postgresql://" + DBprops.get("url") + "/" + DBprops.get("database");
     private static final String DB_USER = String.valueOf(DBprops.get("user"));
     private static final String DB_PASSWORD = String.valueOf(DBprops.get("password"));
+
 
 
 
@@ -34,7 +36,6 @@ public class Server {
         ConnectionSource connectionSource = new JdbcConnectionSource(DATABASE, DB_USER, DB_PASSWORD);
 
         setup(args);
-
         TableUtils.createTableIfNotExists(connectionSource, Email.class);
         TableUtils.createTableIfNotExists(connectionSource, Client.class);
 
