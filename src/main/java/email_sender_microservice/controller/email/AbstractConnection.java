@@ -24,7 +24,6 @@ public abstract class AbstractConnection {
     // Email Properties
     protected static final String SENDER_EMAIL = Properties.get("sender_email").toString();
     protected static final String SENDER_PASSWORD = Properties.get("sender_password").toString();
-    protected static final String HOST = Properties.get("host").toString();
     protected static final String SMTP_HOST = Properties.get("smtp_host").toString();
     protected static final String SMTP_PORT = Properties.get("smtp_port").toString();
 
