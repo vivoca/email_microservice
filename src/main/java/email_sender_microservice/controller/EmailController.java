@@ -2,6 +2,7 @@ package email_sender_microservice.controller;
 
 
 import com.j256.ormlite.dao.Dao;
+import email_sender_microservice.EmailSender;
 import email_sender_microservice.model.Client;
 import email_sender_microservice.model.Email;
 import org.json.JSONObject;
@@ -13,6 +14,8 @@ import javax.mail.internet.InternetAddress;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class EmailController {
 
@@ -57,4 +60,16 @@ public class EmailController {
     }
 
 
+    public void scheduleEmails(final String sender, final String receiver, final String subject, final String message){
+        final EmailSender email1 = new EmailSender();
+        Timer t = new Timer();
+        t.scheduleAtFixedRate(
+                new TimerTask(){
+                    public void run() {
+                        email1.send(sender, receiver, subject, message);
+                    }
+                },
+                0,
+                10000);
+    }
 }

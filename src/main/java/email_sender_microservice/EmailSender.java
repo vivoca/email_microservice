@@ -1,5 +1,7 @@
 package email_sender_microservice;
 
+import email_sender_microservice.controller.ConnectionHandling;
+
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
@@ -7,8 +9,8 @@ import java.util.HashMap;
 import java.util.Properties;
 
 public class EmailSender {
-    static ConnectionPropertyValues configReader = new ConnectionPropertyValues();
-    static HashMap EmailProperties = configReader.getPropValuesOfEmail();
+    static ConnectionHandling configReader = new ConnectionHandling();
+    static HashMap EmailProperties = configReader.getPropValues();
 
     public static String SENDER_EMAIL = EmailProperties.get("sender_email").toString();
     public static String SENDER_PASSWORD = EmailProperties.get("sender_password").toString();
