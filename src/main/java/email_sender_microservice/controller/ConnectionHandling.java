@@ -28,6 +28,9 @@ public class ConnectionHandling {
             connectionProperties.put("user", prop.getProperty("user"));
             connectionProperties.put("password", prop.getProperty("password"));
 
+            // EmailReceiver properties
+            connectionProperties.put("port", prop.getProperty("port"));
+
             // Email properties
             connectionProperties.put("sender_email", prop.getProperty("sender_email"));
             connectionProperties.put("host", prop.getProperty("host"));
