@@ -22,12 +22,12 @@ public abstract class AbstractConnection {
     private static final String DB_PASSWORD = Properties.get("password").toString();
 
     // Email Properties
-    protected static final String SENDER_EMAIL = Properties.get("sender_email").toString();
-    protected static final String SENDER_PASSWORD = Properties.get("sender_password").toString();
-    protected static final String SMTP_HOST = Properties.get("smtp_host").toString();
-    protected static final String SMTP_PORT = Properties.get("smtp_port").toString();
+     static final String SENDER_EMAIL = Properties.get("sender_email").toString();
+     static final String SENDER_PASSWORD = Properties.get("sender_password").toString();
+     static final String SMTP_HOST = Properties.get("smtp_host").toString();
+     static final String SMTP_PORT = Properties.get("smtp_port").toString();
 
-    protected static ConnectionSource connectionSource  = null;
+     private static ConnectionSource connectionSource  = null;
 
 
     public static ConnectionSource getConnectionSource() {
