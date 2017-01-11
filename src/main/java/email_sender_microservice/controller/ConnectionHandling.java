@@ -33,7 +33,8 @@ public class ConnectionHandling {
 
             // Email properties
             connectionProperties.put("sender_email", prop.getProperty("sender_email"));
-            connectionProperties.put("host", prop.getProperty("host"));
+            connectionProperties.put("smtp_host", prop.getProperty("smtp_host"));
+            connectionProperties.put("smtp_port", prop.getProperty("smtp_port"));
             connectionProperties.put("sender_password", prop.getProperty("sender_password"));
 
         } catch (Exception e) {
