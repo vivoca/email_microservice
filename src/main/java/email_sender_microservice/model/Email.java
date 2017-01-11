@@ -2,15 +2,16 @@ package email_sender_microservice.model;
 
 import com.j256.ormlite.field.DatabaseField;
 import com.j256.ormlite.table.DatabaseTable;
+import email_sender_microservice.model.enums.EmailStatus;
 
-    @DatabaseTable(tableName = "email")
+@DatabaseTable(tableName = "email")
     public class Email {
 
-        @DatabaseField(generatedId = true)
+        @DatabaseField(generatedId = true, columnDefinition = "VARCHAR(100) DEFAULT 'EMAIL' NOT NULL")
         private Integer id;
 
         @DatabaseField
-        private String status;
+        private EmailStatus status;
 
         @DatabaseField
         private String to;
@@ -24,16 +25,23 @@ import com.j256.ormlite.table.DatabaseTable;
         @DatabaseField
         private String message;
 
+        @DatabaseField(canBeNull = false, foreign = true, columnName = "APIKey")
+        private Client client;
+
         public Email() {
             // ORMLite needs a no-arg constructor
         }
 
-        public Email(String to, String from, String subject, String message) {
-            this.status = "new";
+
+
+        public Email(String to, String from, String subject, String message, Client client) {
+            this.status = EmailStatus.NEW;
             this.to = to;
             this.from = from;
             this.subject = subject;
             this.message = message;
+            this.client = client;
+
         }
 
         public Integer getId() {
@@ -44,11 +52,11 @@ import com.j256.ormlite.table.DatabaseTable;
             this.id = id;
         }
 
-        public String getStatus() {
+        public EmailStatus getStatus() {
             return status;
         }
 
-        public void setStatus(String status) {
+        public void setStatus(EmailStatus status) {
             this.status = status;
         }
 
@@ -84,4 +92,7 @@ import com.j256.ormlite.table.DatabaseTable;
             this.message = message;
         }
 
+        public Client getClient() {
+            return client;
+        }
     }
