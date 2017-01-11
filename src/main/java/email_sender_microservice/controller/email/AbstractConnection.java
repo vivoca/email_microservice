@@ -11,13 +11,17 @@ import java.util.HashMap;
 
 
 public abstract class AbstractConnection {
-    private static final Logger logger = LoggerFactory.getLogger(AbstractConnection.class);
+    protected static final Logger logger = LoggerFactory.getLogger(AbstractConnection.class);
 
     private static ConnectionHandling configReader = new ConnectionHandling();
     private static HashMap Properties = configReader.getPropValues();
 
     // DB Properties
-    private static final String DATABASE = "jdbc:postgresql://" + Properties.get("url") + "/" + Properties.get("database");
+    private static final String DATABASE = "jdbc:postgresql://" +
+                                            Properties.get("url") +
+                                            "/" +
+                                            Properties.get("database");
+
     private static final String DB_USER = Properties.get("user").toString();
     private static final String DB_PASSWORD = Properties.get("password").toString();
 
