@@ -13,11 +13,11 @@ public class Client {
     private static final Logger logger = LoggerFactory.getLogger(Client.class);
 
     @DatabaseField(id = true)
+    private String APIKey;
+    @DatabaseField
     private String name;
     @DatabaseField
     private String password;
-    @DatabaseField
-    private String APIKey;
     @DatabaseField
     private String header;
     @DatabaseField
