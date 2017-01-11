@@ -2,9 +2,11 @@ package email_sender_microservice.server;
 
 import email_sender_microservice.controller.email.EmailController;
 
+import java.sql.SQLException;
+
 public class EmailSenderServer {
 
-    public static void main(String[] args) {
+    public static void main() {
 
         // Data for the email sending, it will be getting from tha DB
         String sender = "randomemail@gmail.com";
@@ -17,8 +19,14 @@ public class EmailSenderServer {
         String message = "<body style='text-align: justify; color: " + color + "'><img src=" + headerUrl + " style='width: 100%'>" + text + "<img src=" + footerUrl + "></body>";
 
 
-        EmailController testEmail = new EmailController();
-        new Thread(() -> { testEmail.scheduleEmails(sender, receiver, subject, message); }).start();
+        EmailController emailController = new EmailController();
+        new Thread(() -> {
+            try {
+                emailController.scheduleEmails();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }).start();
 
     }
 }
