@@ -23,6 +23,15 @@ public class EmailReceiverServer {
     private static final int port = Integer.valueOf(properties.getOrDefault("port", "60000"));
 
     public static void main() throws SQLException {
+//    Request body JSON format:
+//        {
+//            "to":"email address",
+//                "from":"email adress",
+//                "message": "It's working!",
+//                "subject": "Newest",
+//                "APIKey": "APIKey(you get it from us)"
+//        }
+
 
         logger.debug("Starting " + EmailReceiverServer.class.getName() + "...");
 
