@@ -7,7 +7,7 @@ import email_sender_microservice.model.enums.EmailStatus;
 @DatabaseTable(tableName = "email")
     public class Email {
 
-        @DatabaseField(generatedId = true, columnDefinition = "VARCHAR(100) DEFAULT 'EMAIL' NOT NULL")
+        @DatabaseField(generatedId = true)
         private Integer id;
 
         @DatabaseField
@@ -25,7 +25,7 @@ import email_sender_microservice.model.enums.EmailStatus;
         @DatabaseField
         private String message;
 
-        @DatabaseField(canBeNull = false, foreign = true, columnName = "APIKey")
+        @DatabaseField(canBeNull = false, foreign = true, columnName = "APIKey", foreignAutoCreate = true)
         private Client client;
 
         public Email() {
