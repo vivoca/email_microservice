@@ -18,6 +18,5 @@ public class Main {
         // run EmailSenderServer
         EmailSenderServer.main();
 
-
     }
 }
