@@ -58,7 +58,7 @@ public class EmailController extends AbstractConnection{
         return true;
     }
 
-    public static boolean isValidEmailAddress(String email) {
+    private static boolean isValidEmailAddress(String email) {
         boolean result = true;
         try {
             InternetAddress emailAddress = new InternetAddress(email);
@@ -69,7 +69,7 @@ public class EmailController extends AbstractConnection{
         return result;
     }
 
-    public static boolean send(Email email)  {
+    private static boolean send(Email email)  {
 
         String messagetext = "<body style='text-align: justify; color: " +
                 email.getClient().getTextColor() + "'><img src=" +
@@ -78,13 +78,14 @@ public class EmailController extends AbstractConnection{
                 email.getClient().getFooter() +
                 "></body>";
         try {
-            System.out.println("TLSEmail Start");
+            logger.info("TLSEmail procedure started...");
             Properties props = new Properties();
             props.put("mail.smtp.host", SMTP_HOST);
             props.put("mail.smtp.port", SMTP_PORT);
             props.put("mail.smtp.auth", "true");
             props.put("mail.smtp.starttls.enable", "true");
 
+            logger.info("Authenticating...");
             //create Authenticator object to pass in Session.getInstance argument
             Authenticator auth = new Authenticator() {
                 //override the getPasswordAuthentication method
@@ -94,29 +95,35 @@ public class EmailController extends AbstractConnection{
             };
             Session session = Session.getInstance(props, auth);
 
+            logger.info("Authentication done.");
+
+            logger.info("Setting email properties...");
+
             MimeMessage message = new MimeMessage(session);
             message.setFrom(new InternetAddress(email.getFrom()));
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(email.getTo()));
             message.setReplyTo(new Address[]{new InternetAddress(email.getFrom())});
 
-            System.out.println("Mail Check 2");
 
             message.setSubject(email.getSubject());
             message.setContent(messagetext, "text/html");
 
-            System.out.println("Mail Check 3");
+            logger.info("Email properties set.");
+
+            logger.info("Sending email...");
 
             Transport.send(message);
-            System.out.println("Mail Sent");
+            logger.info("Email successfully sent. Client: " + email.getClient().getName() + ".");
             return true;
         } catch (Exception ex) {
-            System.out.println("Mail fail");
+            logger.error("Failed to send email.");
             return false;
         }
     }
 
     public void scheduleEmails() throws SQLException {
         Dao<Email, String> emailDao = DaoManager.createDao(getConnectionSource(), Email.class);
+        Dao<Client, String> clientDao = DaoManager.createDao(getConnectionSource(), Client.class);
         Timer t = new Timer();
         t.scheduleAtFixedRate(
                 new TimerTask(){
@@ -124,6 +131,7 @@ public class EmailController extends AbstractConnection{
                         try {
                             List<Email> emails = emailDao.queryBuilder().where().eq("status", EmailStatus.NEW).query();
                             for (Email email : emails) {
+                                clientDao.refresh(email.getClient());
                                    if(send(email)){
                                        email.setStatus(EmailStatus.SENT);
                                        emailDao.update(email);

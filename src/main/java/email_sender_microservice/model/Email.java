@@ -25,7 +25,7 @@ import email_sender_microservice.model.enums.EmailStatus;
         @DatabaseField
         private String message;
 
-        @DatabaseField(canBeNull = false, foreign = true, columnName = "APIKey", foreignAutoCreate = true)
+        @DatabaseField(canBeNull = false, foreign = true, columnName = "APIKey")
         private Client client;
 
         public Email() {
