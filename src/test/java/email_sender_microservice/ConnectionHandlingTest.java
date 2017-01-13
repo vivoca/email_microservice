@@ -1,5 +1,6 @@
 package email_sender_microservice;
 
+import email_sender_microservice.controller.ConnectionHandling;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
