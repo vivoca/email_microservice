@@ -17,8 +17,6 @@ public class Client {
     @DatabaseField
     private String name;
     @DatabaseField
-    private String password;
-    @DatabaseField
     private String header;
     @DatabaseField
     private String footer;
@@ -31,10 +29,9 @@ public class Client {
 
     }
 
-    public Client(String name, String password, String header, String footer, String textRGB) {
+    public Client(String name, String header, String footer, String textRGB) {
         logger.info("creating new client");
         this.name = name;
-        this.password = password;
         this.APIKey = generateAPIKey();
         this.header = header;
         this.footer = footer;
@@ -47,14 +44,6 @@ public class Client {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getAPIKey() {
