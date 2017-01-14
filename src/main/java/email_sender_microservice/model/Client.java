@@ -78,6 +78,12 @@ public class Client {
         this.textRGB = textColor;
     }
 
+    /**
+     * <h1>It generate a UUID for the new client (as an APIKey)</h1>
+     * @author Csibi and David
+     * @version final
+     * @return client's uuid
+     */
     public String generateAPIKey() {
         final String uuid = UUID.randomUUID().toString().replaceAll("-", "");
         logger.info("generated uuid: " + uuid);
