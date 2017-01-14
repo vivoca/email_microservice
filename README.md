@@ -1,4 +1,4 @@
-# Email Microservice
+# Email [Microservice](https://en.wikipedia.org/wiki/Microservices)
 
 ## Description
 
@@ -6,12 +6,12 @@
 
 ## Usage
 
-1. Fill the `connection.properties` file with your datbase's properties
+1. Fill the `connection.properties` file with your datbase's properties, use [Postgres](https://newrelic.com/plugins/enterprisedb-corporation/30?_bt=172087290907&_bk=postgres&_bm=p&_bn=g&gclid=CjwKEAiAtefDBRDTnbDnvM735xISJABlvGOv45VXys6R0ILZv6ij2g23EZrr42cie_J4twvp0sHvohoCczLw_wcB)
 2. Run `Main` in root folder
 3. Run `controller\CreateClient\ClientMaker.java` 
-4. send a post with Postman in JSON, like this: 
+4. Send a post with [Postman](https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop) in JSON, like this: 
 
-    Request body JSON format:
+    Request body [JSON](http://www.w3schools.com/js/js_json_intro.asp) format:
         {
             "to":"email address",
             "from":"email adress",
