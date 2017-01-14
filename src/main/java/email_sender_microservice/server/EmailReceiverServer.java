@@ -23,15 +23,6 @@ public class EmailReceiverServer {
     private static final int port = Integer.valueOf(properties.getOrDefault("port", "60000"));
 
     public static void main() throws SQLException {
-//    Request body JSON format:
-//        {
-//            "to":"email address",
-//                "from":"email adress",
-//                "message": "It's working!",
-//                "subject": "Newest",
-//                "APIKey": "APIKey(you get it from us)"
-//        }
-
 
         logger.debug("Starting " + EmailReceiverServer.class.getName() + "...");
 
@@ -61,10 +52,14 @@ public class EmailReceiverServer {
         });
     }
 
-//    /**
-//     * Setting up port
-//     * @param args - app args
-//     */
+    /**
+     * <h1>Setting up port</h1>
+     * <p>It catch the NumberFormatException if the form of port is not allowed.</p>
+     * @author Csibi and David
+     * @version final
+     * @param port - app args
+     *
+     */
     private static void setup(int port){
         try {
             port(port);
