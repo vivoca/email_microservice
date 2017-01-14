@@ -10,6 +10,13 @@ import java.sql.SQLException;
 
 
 public class ClientMaker extends AbstractConnection{
+    /**
+     * <h1>Create a client with APIKey, email's header and footer 's URL and the message's RGB code.</h1>
+     * <p>If there is a new user, it has to be run once to save into the client table.</p>
+     * @version final
+     * @author  Csibi
+     * @param args
+     */
     public static void main(String[] args) {
         try {
             Dao<Client, String> clientDao =  DaoManager.createDao(getConnectionSource(), Client.class);
