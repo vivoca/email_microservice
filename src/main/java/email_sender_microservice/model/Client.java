@@ -5,7 +5,6 @@ import com.j256.ormlite.table.DatabaseTable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.awt.*;
 import java.util.UUID;
 
 @DatabaseTable(tableName = "client")
@@ -80,8 +79,6 @@ public class Client {
 
     /**
      * <h1>It generate a UUID for the new client (as an APIKey)</h1>
-     * @author Csibi and David
-     * @version final
      * @return client's uuid
      */
     public String generateAPIKey() {

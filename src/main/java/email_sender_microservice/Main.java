@@ -8,9 +8,8 @@ import java.sql.SQLException;
 
 public class Main {
     /**
-     * <h1>Run EmailReceiverServer.main() and  EmailSenderServer.main() method  to get the email's data and send it.</h1>
+     * Run EmailReceiverServer.main() and  EmailSenderServer.main() method  to get the email's data and send it.
      * @param args
-     * @version final
      */
     public static void main(String[] args) {
 

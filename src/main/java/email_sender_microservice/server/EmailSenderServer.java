@@ -7,9 +7,7 @@ import java.sql.SQLException;
 public class EmailSenderServer {
 
     /**
-     * <h1>It runs the scheduleEmails() method or catch the SQLException.</h1>
-     * @author Vivi and Moni
-     * @version final
+     * It runs the scheduleEmails() method or catch the SQLException.
      */
     public static void main() {
 

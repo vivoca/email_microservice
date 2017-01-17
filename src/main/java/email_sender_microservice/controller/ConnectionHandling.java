@@ -11,9 +11,7 @@ public class ConnectionHandling {
     private InputStream inputStream;
 
     /**
-     * <h1>Get the email and database connection's properties from "connection/connection.properties" config file</h1>
-     * @author Vivi and Moni
-     * @version final
+     * Get the email and database connection's properties from "connection/connection.properties" config file
      * @return connectionProperties HashMap
      */
     public HashMap<String, String> getPropValues() {

@@ -53,12 +53,9 @@ public class EmailReceiverServer {
     }
 
     /**
-     * <h1>Setting up port</h1>
+     * Setting up port
      * <p>It catch the NumberFormatException if the form of port is not allowed.</p>
-     * @author Csibi and David
-     * @version final
      * @param port - app args
-     *
      */
     private static void setup(int port){
         try {
