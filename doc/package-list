@@ -1,7 +1,0 @@
-email_sender_microservice
-email_sender_microservice.controller
-email_sender_microservice.controller.CreateClient
-email_sender_microservice.controller.email
-email_sender_microservice.model
-email_sender_microservice.model.enums
-email_sender_microservice.server
